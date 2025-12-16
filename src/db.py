@@ -15,7 +15,7 @@ import os
 from typing import Any
 
 from dedalus_mcp import HttpMethod, HttpRequest, get_context, tool
-from dedalus_mcp.auth import Connection, Credentials
+from dedalus_mcp.auth import Connection, SecretKeys
 from pydantic import BaseModel, Field
 
 from dotenv import load_dotenv
@@ -26,8 +26,10 @@ load_dotenv()
 
 supabase = Connection(
     name="supabase",
-    credentials=Credentials(key="SUPABASE_SECRET_KEY"),
-    base_url=f"{os.getenv('SUPABASE_URL')}/rest/v1"
+    secrets=SecretKeys(key="SUPABASE_SECRET_KEY"),
+    base_url=f"{os.getenv('SUPABASE_URL')}/rest/v1",
+    auth_header_name="apikey",      # Supabase uses 'apikey' header
+    auth_header_format="{api_key}",  # Raw value, no Bearer prefix
 )
 
 

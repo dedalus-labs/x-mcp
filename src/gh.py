@@ -17,7 +17,7 @@ import os
 from typing import Any
 
 from dedalus_mcp import HttpMethod, HttpRequest, get_context, tool
-from dedalus_mcp.auth import Connection, Credentials
+from dedalus_mcp.auth import Connection, SecretKeys
 from pydantic import BaseModel
 
 from dotenv import load_dotenv
@@ -28,8 +28,9 @@ load_dotenv()
 
 github = Connection(
     name="github",
-    credentials=Credentials(token="GITHUB_TOKEN"),
+    secrets=SecretKeys(token="GITHUB_TOKEN"),
     base_url="https://api.github.com",
+    auth_header_format="token {api_key}",  # GitHub uses "token <pat>" format
 )
 
 

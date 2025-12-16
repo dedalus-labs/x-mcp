@@ -8,7 +8,7 @@ import asyncio
 from dedalus_mcp.client import MCPClient
 
 
-SERVER_URL = "http://localhost:8000/mcp"
+SERVER_URL = "http://localhost:8001/mcp"
 
 
 async def main() -> None:

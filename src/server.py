@@ -6,6 +6,7 @@ from dedalus_mcp.server import TransportSecuritySettings
 
 from db import supabase, db_tools
 from gh import github, gh_tools
+from smoke import smoke_tools
 
 
 # --- Server ------------------------------------------------------------------
@@ -18,5 +19,5 @@ server = MCPServer(
 
 
 async def main() -> None:
-    server.collect(*gh_tools, *db_tools)
-    await server.serve()
+    server.collect(*smoke_tools, *gh_tools, *db_tools)
+    await server.serve(port=8001)
