@@ -35,7 +35,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "dedalus-mcp>=0.2.10",
+    "dedalus-mcp>=0.3.0",
     # Data validation & serialization
     "pydantic>=2.12.5",
     # High-performance event loop
