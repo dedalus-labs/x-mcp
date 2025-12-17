@@ -305,7 +305,7 @@ wheels = [
 
 [[package]]
 name = "dedalus-mcp"
-version = "0.2.9"
+version = "0.2.10"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mcp", marker = "sys_platform == 'darwin' or sys_platform == 'linux'" },
@@ -313,9 +313,9 @@ dependencies = [
     { name = "pyjwt", extra = ["crypto"], marker = "sys_platform == 'darwin' or sys_platform == 'linux'" },
     { name = "typing-extensions", marker = "sys_platform == 'darwin' or sys_platform == 'linux'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/17/fb/c92c647bc32ac3769cbb400086f3c350759c88d9b62647a8b0e54d0c9275/dedalus_mcp-0.2.9.tar.gz", hash = "sha256:21465ca31d3a0f85a92e13406fe0a30fe98c9104ee42f202b6ce0cd2e5853aed", size = 115981, upload-time = "2025-12-17T00:46:53.917Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/ee/a27e5c3f5dbf6ba6d833c8973bc29b4496c0726d4e882ce279d51479c716/dedalus_mcp-0.2.10.tar.gz", hash = "sha256:08c05e29d67197d4fa896e25f60f6728a1dd800c41d648958524ea5ea8947c1b", size = 116135, upload-time = "2025-12-17T01:24:28.128Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/59/05/73bc4e321b15dec9acf6cec4b276ca718990e67af7ebcbc2d7bed96ff87b/dedalus_mcp-0.2.9-py3-none-any.whl", hash = "sha256:3f63ace14f800a67859a61980527845e82594df42f898a451d82f83f7640765f", size = 156845, upload-time = "2025-12-17T00:46:55.08Z" },
+    { url = "https://files.pythonhosted.org/packages/50/20/56e102daa1384384874d111063f366ca8be319747647f4fff3ce4a18e086/dedalus_mcp-0.2.10-py3-none-any.whl", hash = "sha256:8c757729b21bf3a123e19a1b71a7804109c03029f14f2d572c4610165e923e03", size = 157000, upload-time = "2025-12-17T01:24:26.875Z" },
 ]
 
 [[package]]
