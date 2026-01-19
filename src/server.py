@@ -4,21 +4,20 @@
 from dedalus_mcp import MCPServer
 from dedalus_mcp.server import TransportSecuritySettings
 
-from db import supabase, db_tools
-from gh import github, gh_tools
 from smoke import smoke_tools
+from x import x_api, x_tools
 
 
 # --- Server ------------------------------------------------------------------
 
 server = MCPServer(
-    name="example-dedalus-mcp",
-    connections=[github, supabase],
+    name="x-mcp",
+    connections=[x_api],
     http_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
     authorization_server="https://preview.as.dedaluslabs.ai",
 )
 
 
 async def main() -> None:
-    server.collect(*smoke_tools, *gh_tools, *db_tools)
+    server.collect(*smoke_tools, *x_tools)
     await server.serve(port=8080)

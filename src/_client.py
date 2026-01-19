@@ -5,9 +5,8 @@
 
 Environment variables:
     DEDALUS_API_KEY: Your Dedalus API key (dsk_*)
-    GITHUB_TOKEN: GitHub personal access token
-    SUPABASE_SECRET_KEY: Supabase service role key
-    SUPABASE_URL: Supabase project URL
+    X_API_KEY: X API Key (Consumer Key)
+    X_API_SECRET: X API Secret (Consumer Secret)
     DEDALUS_API_URL: Product API base URL (default: http://localhost:8080)
     DEDALUS_AS_URL: OpenMCP AS base URL used to fetch the encryption public key
                    (default: http://localhost:4444)
@@ -21,12 +20,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Server framework provides Connection/SecretKeys/SecretValues definitions
-from dedalus_mcp.auth import Connection, SecretKeys, SecretValues
+from dedalus_mcp.auth import SecretValues
 from dedalus_mcp import MCPServer
 from dedalus_mcp.server import TransportSecuritySettings
 
 # SDK provides client-side encryption + request serialization
 from dedalus_labs import AsyncDedalus, DedalusRunner
+
+# Import connection definition from server
+from x import x_api
 
 # --- Configuration ------------------------------------------------------------
 
@@ -38,35 +40,17 @@ AS_URL = os.getenv("DEDALUS_AS_URL", "http://localhost:4444")
 DEDALUS_API_KEY = os.getenv("DEDALUS_API_KEY")
 
 
-# --- Connection Definitions ---------------------------------------------------
-# These define WHAT secrets are needed (schema).
-# Typically imported from your MCP server package (e.g., from server import github, supabase)
-
-github = Connection(
-    name="github",
-    secrets=SecretKeys(token="GITHUB_TOKEN"),
-    base_url="https://api.github.com",
-)
-
-supabase = Connection(
-    name="supabase",
-    secrets=SecretKeys(key="SUPABASE_SECRET_KEY"),
-    base_url=f"{os.getenv('SUPABASE_URL', '')}/rest/v1",
-)
-
-
 # --- Secret Bindings ----------------------------------------------------------
 # These provide ACTUAL values for the secrets.
 
-github_secrets = SecretValues(github, token=os.getenv("GITHUB_TOKEN", ""))
-supabase_secrets = SecretValues(supabase, key=os.getenv("SUPABASE_SECRET_KEY", ""))
+x_secrets = SecretValues(x_api, token=os.getenv("X_BEARER_TOKEN", ""))
 
 
 # --- MCP Server Definitions ---------------------------------------------------
 
 srv1 = MCPServer(
-    name="windsor/example-dedalus-mcp",
-    connections=[github, supabase],
+    name="x-mcp",
+    connections=[x_api],
     http_security=TransportSecuritySettings(enable_dns_rebinding_protection=False)
 )
 
@@ -88,10 +72,10 @@ async def main() -> None:
 
     runner = DedalusRunner(client)
     result = await runner.run(
-        input="Use the Supabase tool to list all tables in the database.",
-        model="openai/gpt-4.1",
+        input="Use the X API to get information about the user @elonmusk",
+        model="openai/gpt-4o",
         mcp_servers=[srv1],
-        credentials=[github_secrets, supabase_secrets],
+        credentials=[x_secrets],
     )
     print(result.output)
 

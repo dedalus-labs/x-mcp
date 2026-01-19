@@ -1,14 +1,14 @@
 # Copyright (c) 2025 Dedalus Labs, Inc. and its contributors
 # SPDX-License-Identifier: MIT
 
-"""Sample MCP client for testing the dedalus-mcp-server."""
+"""Sample MCP client for testing the x-mcp server."""
 
 import asyncio
 
 from dedalus_mcp.client import MCPClient
 
 
-SERVER_URL = "http://localhost:8001/mcp"
+SERVER_URL = "http://localhost:8080/mcp"
 
 
 async def main() -> None:
@@ -23,22 +23,11 @@ async def main() -> None:
             print(f"    {t.description}")
         print()
 
-    # Test gh_list_repos
-    print("--- gh_list_repos ---")
-    repos = await client.call_tool("gh_list_repos", {"per_page": 3})
-    print(repos)
+    # Test x_get_user_by_username
+    print("--- x_get_user_by_username ---")
+    user = await client.call_tool("x_get_user_by_username", {"username": "elonmusk"})
+    print(user)
     print()
-
-    # Test gh_get_repo
-    print("--- gh_get_repo ---")
-    repo = await client.call_tool("gh_get_repo", {"owner": "dedalus-labs", "repo": "openmcp"})
-    print(repo)
-    print()
-
-    # Test db_select (Supabase)
-    print("--- db_select ---")
-    rows = await client.call_tool("db_select", {"table": "users", "limit": 3})
-    print(rows)
 
     await client.close()
 

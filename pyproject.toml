@@ -7,19 +7,19 @@ build-backend = "uv_build"
 # --- PROJECT CONFIGURATION ---
 
 [project]
-name = "example-dedalus-mcp"
+name = "x-mcp"
 version = "0.0.1"
-description = "A basic Dedalus MCP server."
+description = "A Dedalus MCP server for read-only access to the X (Twitter) API v2."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
-    { name = "Windsor Nguyen", email = "win@dedalus.ai" },
+    { name = "Dedalus Labs", email = "support@dedalus.ai" },
 ]
 maintainers = [
-    { name = "Windsor Nguyen", email = "win@dedalus.ai" },
+    { name = "Dedalus Labs", email = "support@dedalus.ai" },
 ]
-keywords = ["ai", "mcp", "agents", "dedalus"]
+keywords = ["ai", "mcp", "agents", "dedalus", "x", "twitter", "api"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -46,9 +46,9 @@ dependencies = [
 # --- PROJECT URLS ---
 
 [project.urls]
-Homepage = "https://github.com/dedalus-labs/example-dedalus-mcp"
-Repository = "https://github.com/dedalus-labs/example-dedalus-mcp"
-Issues = "https://github.com/dedalus-labs/example-dedalus-mcp/issues"
+Homepage = "https://github.com/dedalus-labs/x-mcp"
+Repository = "https://github.com/dedalus-labs/x-mcp"
+Issues = "https://github.com/dedalus-labs/x-mcp/issues"
 
 # --- DEPENDENCY GROUPS ---
 
