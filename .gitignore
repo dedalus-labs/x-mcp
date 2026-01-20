@@ -14,7 +14,21 @@
 **/.env.*
 !**/.env.example
 
+# Tests (local dev only)
+tests/
+
 # Coding agents
 **/.claude/
 **/.cursor/
 **/.agent/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
