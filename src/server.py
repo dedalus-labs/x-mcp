@@ -13,7 +13,7 @@ server = MCPServer(
     name="x-mcp",
     connections=[x_api],
     http_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
-    authorization_server="https://as.dedaluslabs.ai",
+    streamable_http_stateless=True,  # Required for Lambda deployments
 )
 
 
